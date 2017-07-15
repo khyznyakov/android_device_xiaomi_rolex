@@ -106,16 +106,16 @@ PRODUCT_PACKAGES += \
     AntHalService \
     libantradio \
     antradio_app \
-	com.dsi.ant.antradio_library \
-	org.apache.http.legacy
+		com.dsi.ant.antradio_library \
+		org.apache.http.legacy
 
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
     audio.r_submix.default \
     audio.usb.default \
-	audio.primary.msm8937 \
-	libvolumelistener \
+		audio.primary.msm8937 \
+		libvolumelistener \
     tinymix \
     libshim_sound_trigger \
     libaudio-resampler \
@@ -251,5 +251,3 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 		ro.secure=0 \
     ro.adb.secure=0 \
     camera2.portability.force_api=1
-PRODUCT_COPY_FILES += \
-	device/xiaomi/rolex/Sync/SystemSync.apk:system/app/SystemSync/SystemSync.apk
