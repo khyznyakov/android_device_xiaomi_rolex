@@ -178,8 +178,7 @@ PRODUCT_PACKAGES += \
 	init.qcom.efs.sync.sh \
 	init.qcom.fm.sh \
 	init.qcom.post_boot.sh \
-	init.qcom.power.rc \
-	init.qcom.factory.rc
+	init.qcom.power.rc
 
 # Media profile
 PRODUCT_COPY_FILES += \

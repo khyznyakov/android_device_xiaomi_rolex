@@ -27,7 +27,6 @@
 import init.qcom.power.rc
 import init.qcom.usb.rc
 import init.target.rc
-import init.qcom.factroy.rc
 on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
