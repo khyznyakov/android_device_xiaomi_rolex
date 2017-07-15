@@ -307,10 +307,6 @@ etc/firmware/hbtp/hbtpcfg_8917.dat
 etc/firmware/hbtp/hbtpcfg.dat
 etc/firmware/hbtp/qtc800s_dsp.bin
 
-# Consumer IR
-lib/hw/consumerir.default.so
-lib64/hw/consumerir.default.so
-
 # DPM
 bin/dpmd
 etc/dpm/dpm.conf
