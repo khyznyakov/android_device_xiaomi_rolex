@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,14 +16,10 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-ifneq ($(CUSTOM_VERIFY_PACKAGE),)
-VERIFY_PACKAGE := $(CUSTOM_VERIFY_PACKAGE)
-else
-VERIFY_PACKAGE := /system/app/SystemSync/SystemSync.apk
-endif
-LOCAL_MODULE_TAGS := optional
+
 LOCAL_C_INCLUDES := system/core/init
-LOCAL_SRC_FILES := init_rolex.cpp
 LOCAL_MODULE := libinit_rolex
-LOCAL_CPPFLAGS += -DVERIFY_PACKAGE=\"$(VERIFY_PACKAGE)\"
+LOCAL_MODULE_TAGS := optional
+LOCAL_SRC_FILES := init_rolex.cpp
+
 include $(BUILD_STATIC_LIBRARY)

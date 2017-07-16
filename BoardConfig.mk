@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,14 +19,9 @@ TARGET_OTA_ASSERT_DEVICE := rolex,4a,4A
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-# Compiler Flags
-ifeq ($(PLATFORM_VERSION),6.0.1)
+# Flags
 COMMON_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 COMMON_GLOBAL_CPPFLAGS += -DDISABLE_ASHMEM_TRACKING
-else
-BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
-BOARD_GLOBAL_CPPFLAGS += -DDISABLE_ASHMEM_TRACKING
-endif
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -53,7 +48,6 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
 TARGET_CPU_CORTEX_A53 := true
-
 TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
 
@@ -66,8 +60,8 @@ BOARD_KERNEL_IMAGE_NAME  := Image.gz-dtb
 BOARD_KERNEL_BASE        := 0x80000000
 BOARD_KERNEL_PAGESIZE    := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --kernel_offset 0x00008000
-# TARGET_KERNEL_SOURCE := kernel/xiaomi/rolex
-# TARGET_KERNEL_CONFIG := rolex_defconfig
+# TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8917
+# TARGET_KERNEL_CONFIG := lineageos_rolex_defconfig
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
@@ -101,7 +95,6 @@ AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY := true
-
 AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 BOARD_SUPPORTS_SOUND_TRIGGER := true
 USE_XML_AUDIO_POLICY_CONF := 1
@@ -119,23 +112,12 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
-# Modify
-# BOARD_QTI_CAMERA_32BIT_ONLY := true
-#
-#
+# Camera
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
-ifeq ($(PLATFORM_VERSION),6.0.1)
 COMMON_GLOBAL_CFLAGS += -DMETADATA_CAMERA_SOURCE
 COMMON_GLOBAL_CPPFLAGS += -DMETADATA_CAMERA_SOURCE
-else
-BOARD_GLOBAL_CFLAGS += -DMETADATA_CAMERA_SOURCE
-BOARD_GLOBAL_CPPFLAGS += -DMETADATA_CAMERA_SOURCE
-ADDITIONAL_BUILD_PROPERTIES += media.stagefright.legacyencoder=true
-ADDITIONAL_BUILD_PROPERTIES += media.stagefright.less-secure=true
-
-endif
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -166,10 +148,7 @@ TARGET_NO_RPC := true
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
-# ifeq ($(TARGET_BUILD_VARIANT),user)
 TARGET_INIT_VENDOR_LIB := libinit_rolex
-# endif
-# TARGET_RECOVERY_DEVICE_MODULES := libinit_rolex
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -216,11 +195,8 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 #PCI RCS
 TARGET_USES_PCI_RCS := false
-ifeq ($(PLATFORM_VERSION),6.0.1)
 MALLOC_IMPL := dlmalloc
-else
-MALLOC_SVELTE := true
-endif
+
 # RIL
 TARGET_RIL_VARIANT := caf
 PROTOBUF_SUPPORTED := true
@@ -233,22 +209,17 @@ BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
-# TARGET_PROVIDES_WCNSS_QMI   := true
-# TARGET_USES_WCNSS_CTRL      := true
-# TARGET_USES_QCOM_WCNSS_QMI  := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME := "wlan"
+
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
-# Jack
-ifneq ($(PLATFORM_VERSION),6.0.1)
-ANDROID_JACK_VM_ARGS := -Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4096M
-endif
 # OTA
 BLOCK_BASED_OTA := true
+
 # inherit from the proprietary version
 -include vendor/xiaomi/rolex/BoardConfigVendor.mk
