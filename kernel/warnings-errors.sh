@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# First patch
+cd ../../..
 DeleteAllWerror(){
     local path="./"
     if [ -n "$1" ];then
@@ -12,6 +15,8 @@ DeleteAllWerror(){
 }
 DeleteAllWerror $@
 
+# Second patch
+cd bionic
 DeleteAll__user(){
     local Headers=$(find -regex '.*\.h')
     sed 's:[[:space:]]__user[[:space:]]: :' ${Headers[@]} -i
