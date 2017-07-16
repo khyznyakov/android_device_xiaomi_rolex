@@ -18,11 +18,14 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
-# Boot animation 1280x720
+# Boot animation
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-# Device uses high-density artwork where available
+# Screen density
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=320
+
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 	
