@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # First patch
-cd ../../../..
+cd ../../../../
 DeleteAllWerror(){
     local path="./"
     if [ -n "$1" ];then
