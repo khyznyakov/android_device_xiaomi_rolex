@@ -215,6 +215,8 @@ camera.hal1.packagelist=com.skype.raider,com.google.android.talk
 camera.display.umax=1920x1080
 camera.display.lmax=1280x720
 persist.sys.chgdisabled=0
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
 
 ro.product.wt.boardid=S88537AA1
 ro.ct.device.model=XMP-2016111
