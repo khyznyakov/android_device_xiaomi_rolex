@@ -1,4 +1,4 @@
-/* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -30,12 +30,11 @@
 #define ULP_PROXY_BASE_H
 
 #include <gps_extended.h>
-
+#include "fused_location_extended.h"
 namespace loc_core {
 
 class LocAdapterBase;
-struct FlpExtBatchOptions;
-struct FlpExtLocation;
+
 class UlpProxyBase {
 public:
     LocPosMode mPosMode;
@@ -72,6 +71,16 @@ public:
         (void)svExt;
         return false;
     }
+    inline virtual bool reportSvMeasurement(GnssSvMeasurementSet &svMeasurementSet) {
+        (void)svMeasurementSet;
+        return false;
+    }
+
+    inline virtual bool reportSvPolynomial(GnssSvPolynomial &svPolynomial)
+    {
+       (void)svPolynomial;
+       return false;
+    }
     inline virtual bool reportStatus(GpsStatusValue status) {
 
         (void)status;
@@ -97,6 +106,11 @@ public:
         (void)locations;
         (void)number_of_locations;
         return false;
+    }
+    inline virtual bool reportDeleteAidingData(GpsAidingData aidingData)
+    {
+       (void)aidingData;
+       return false;
     }
 };
 
